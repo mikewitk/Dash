@@ -1,46 +1,163 @@
-# Getting Started with Create React App
+# Dash
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The ultimate\* dashboard.  
+Access several information about transactions, schedule, user and much more on a simple to use interface.
 
-## Available Scripts
+## Installing / Getting Started
 
-In the project directory, you can run:
+Just run
 
-### `yarn start`
+```shell
+  yarn start
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+and you are set.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Developing
 
-### `yarn test`
+### Build With
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- React + TypeScript
+- Styled Components
+- Axios
+- Redux + Redux-Thunk
+- Storybook + Chromatic
+- Jest + React Testing Library + Cypress
+- GitHub Actions
+- Netlify
 
-### `yarn build`
+### Deploying / Publishing
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Make PR changes to **master** branch
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### API Reference
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Work in Progress
 
-### `yarn eject`
+### Project Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Most of the code lives in the `src` folder and looks like this:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+src
+|
++-- assets      # assets folder can contain all the static data such as images, fonts, etc.
+|
++-- components  # shared components used across the entire application
+|
++-- config      # all the global configuration, env variables etc. get exported from here and used in the app
+|
++-- context     # all of the global contexts
+|
++-- features    # feature based modules
+|
++-- hooks       # shared hooks used across the entire application
+|
++-- lib         # re-exporting different libraries preconfigured for the application
+|
++-- routes      # routes configuration
+|
++-- test        # test utilities and mock server
+|
++-- types       # base types used accross the application
+|
++-- utils       # shared utility functions
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+In order to scale the application in the easiest and most maintainable way, keep most of the code inside the `features` folder, which should contain different feature-based things. Every `feature` folder should contain domain specific code for a specific feature. This will allow you to keep functionalities scoped to a feature and not mix it with the shared things. This is much easier to maintain than a flat folder structure with many files.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+A feature could have the following structure:
 
-## Learn More
+```
+src/features/awesome-feature
+|
++-- api         # exported API request declarations related to the feature
+|
++-- components  # components scoped to the feature, not used anywhere else
+|
++-- hooks       # hooks scoped to the feature, not used anywhere else
+|
++-- routes      # route components for the given feature
+|
++-- types       # typescript types for the given feature
+|
++-- utils       # utility functions used only by the feature
+|
++-- index.ts    # entry point for the feature, it should serve as the public API of the given feature and exports everything that should be used outside the feature
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+A feature folder could also contain other features (if used only within the parent feature) or be kept separated, it's a matter of preference.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Everything from a feature should be exported from the `index.ts` file which behaves as the public API of the feature.
+
+You should import stuff from other features only by using:
+
+`import {AwesomeComponent} from "@/features/awesome-feature" `
+
+and not
+
+`import {AwesomeComponent} from "@/features/awesome-feature/components/AwesomeComponent`
+
+This can also be configured in the ESLint configuration to disallow the later import by the following rule:
+
+```
+{
+    rules: {
+        'no-restricted-imports': [
+            'error',
+            {
+            patterns: ['@/features/*/*'],
+            },
+        ],
+
+    ...rest of the configuration
+}
+```
+
+This was inspired by how [NX](https://nx.dev/) handles libraries that are isolated but available to be used by the other modules. Think of a feature as a library or a module that is self-contained but can expose different parts to other features via its entry point.
+
+Exmaple of project features
+
+```
+|
++-- Sign In
+|
++-- Log In
+|
++-- Dashboard
+|
++-- Transactions
+|
++-- Schedules
+|
++-- Users
+|
++-- UserSettings
+        |
+        +-- api         # exported API request declarations related to the feature
+        |
+        +-- components  # components scoped to the feature, not used anywhere else
+        |       |
+        |       |
+        |       |-- Form
+        |       |    |-- /TextField
+        |       |    |       |-- TextField.js
+        |       |    |       |-- TextField.styles.js
+        |       |    |       |-- TextField.test.js
+        |       |    |       |-- TextField.stories.js
+        |       |    |-- index.js
+        |
+        |
+        +-- hooks       # hooks scoped to the feature, not used anywhere else
+        |
+        +-- routes      # route components for the given feature
+        |
+        +-- types       # typescript types for the given feature
+        |
+        +-- utils       # utility functions used only by the feature
+        |
+        +-- index.ts    # entry point for the feature, it should serve as the public API of the given feature and exports everything that should be used outside the feature
+
+```
+
+\* According to myself
