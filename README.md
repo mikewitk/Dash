@@ -133,30 +133,34 @@ Exmaple of project features
 +-- Users
 |
 +-- UserSettings
-        |
-        +-- api         # exported API request declarations related to the feature
-        |
-        +-- components  # components scoped to the feature, not used anywhere else
-        |       |
-        |       |
-        |       |-- Form
-        |       |    |-- /TextField
-        |       |    |       |-- TextField.js
-        |       |    |       |-- TextField.styles.js
-        |       |    |       |-- TextField.test.js
-        |       |    |       |-- TextField.stories.js
-        |       |    |-- index.js
-        |
-        |
-        +-- hooks       # hooks scoped to the feature, not used anywhere else
-        |
-        +-- routes      # route components for the given feature
-        |
-        +-- types       # typescript types for the given feature
-        |
-        +-- utils       # utility functions used only by the feature
-        |
-        +-- index.ts    # entry point for the feature, it should serve as the public API of the given feature and exports everything that should be used outside the feature
+    |
+    +-- api         # exported API request declarations related to the feature
+    |
+    +-- components  # components scoped to the feature, not used anywhere else
+    |    |
+    |    |-- Form
+    |    |    |-- /TextField
+    |    |    |    |-- TextField.js
+    |    |    |    |-- TextField.styles.js
+    |    |    |    |-- TextField.test.js
+    |    |    |    |-- TextField.stories.js
+    |    |    |
+    |    |    |-- /Select
+    |    |    |    |-- Select.js
+    |    |    |    |-- Select.styles.js
+    |    |    |    |-- Select.test.js
+    |    |    |    |-- Select.stories.js
+    |    |    |-- index.js
+    |
+    +-- hooks       # hooks scoped to the feature, not used anywhere else
+    |
+    +-- routes      # route components for the given feature
+    |
+    +-- types       # typescript types for the given feature
+    |
+    +-- utils       # utility functions used only by the feature
+    |
+    +-- index.ts    # entry point for the feature, it should serve as the public API of the given feature and exports everything that should be used outside the feature
 
 ```
 
