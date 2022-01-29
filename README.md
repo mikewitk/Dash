@@ -1,7 +1,7 @@
 # Dash
 
 The ultimate\* dashboard.  
-Access several information about transactions, schedule, user and much more on a simple to use interface.
+Access several information about transactions, schedule, user and much more on a easy to learn user interface.
 
 ## Installing / Getting Started
 
