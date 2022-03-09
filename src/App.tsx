@@ -1,19 +1,12 @@
-import DashboardPage from "./views/Dashboard/DashboardPage/DashboardPage";
+import GlobalThemeProvider from './lib/theme/GlobalThemeProvider';
+import Dashboard from './features/Dashboard';
 
 function App(): JSX.Element {
-  return (
-    <div>
-      <header>
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-        </a>
-      </header>
-      <DashboardPage />
-    </div>
-  );
-          Learn React
+	return (
+		<GlobalThemeProvider>
+			<Dashboard />
+		</GlobalThemeProvider>
+	);
 }
 
 export default App;
