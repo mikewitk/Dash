@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { CardProps } from './Card';
 
 const elevationValues = {
 	0: `0px 0px 0px 0px rgba(0, 0, 0, 0.14), 0px 0px 0px 0px rgba(0, 0, 0, 0.12), 0px 0px 0px 0px rgba(0, 0, 0, 0.2);`,
@@ -14,11 +15,17 @@ const elevationValues = {
 	24: `0px 24px 38px 0px rgba(0, 0, 0, 0.14), 0px 9px 46px 0px rgba(0, 0, 0, 0.12), 0px 11px 15px 0px rgba(0, 0, 0, 0.2);`,
 };
 
-export const StyledCard = styled.div<{
-	elevation: keyof typeof elevationValues;
-}>`
+export const StyledCard = styled.div<CardProps>`
 	min-width: 50px;
 	min-height: 50px;
 	/* offset-x | offset-y | blur-radius | spread-radius | color */
 	box-shadow: ${({ elevation }) => elevationValues[elevation]};
+
+	padding-top: ${({ pt }) => (pt ? pt * 8 : 0)}px;
+	padding-right: ${({ pr }) => (pr ? pr * 8 : 0)}px;
+	padding-bottom: ${({ pb }) => (pb ? pb * 8 : 0)}px;
+	padding-left: ${({ pl }) => (pl ? pl * 8 : 0)}px;
+
+	border-radius: ${({ borderRadius }) =>
+		borderRadius ? borderRadius * 8 : 0}px;
 `;

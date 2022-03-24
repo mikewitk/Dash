@@ -14,4 +14,9 @@ const Template: ComponentStory<typeof Card> = args => <Card {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
 	elevation: 1,
+	pt: 1,
+	pr: 1,
+	pb: 1,
+	pl: 1,
+	borderRadius: 2,
 };
