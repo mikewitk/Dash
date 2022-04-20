@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { baseUrl } from '../config/variables';
+
 const request = axios.create({
 	baseURL: baseUrl,
 	headers: {

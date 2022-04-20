@@ -1,7 +1,8 @@
 import request from './http-requests';
 import { SummaryData } from '../types';
+import { AxiosResponse } from 'axios';
 
-const getSummary = () => {
+const getSummary = (): Promise<AxiosResponse<SummaryData>> => {
 	return request.get<SummaryData>('/summary.json');
 };
 
