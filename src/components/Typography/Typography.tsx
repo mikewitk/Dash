@@ -6,7 +6,7 @@ interface TagProps {
 }
 
 type Props = {
-	tag: string;
+	tag: React.ComponentType;
 	children: string;
 };
 

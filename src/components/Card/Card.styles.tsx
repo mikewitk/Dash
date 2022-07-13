@@ -28,4 +28,7 @@ export const StyledCard = styled.div<CardProps>`
 
 	border-radius: ${({ borderRadius }) =>
 		borderRadius ? borderRadius * 8 : 0}px;
+
+	background-color: ${({ bgColor, theme }) =>
+		bgColor ? theme.colors.ORANGE[3] : theme.colors.WHITE};
 `;

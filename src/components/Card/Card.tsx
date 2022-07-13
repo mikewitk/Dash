@@ -8,6 +8,7 @@ export interface CardProps {
 	pb?: number;
 	pl?: number;
 	borderRadius?: number;
+	bgColor: string;
 }
 
 const Card: React.FC<CardProps> = ({ children, ...props }) => {
