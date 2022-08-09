@@ -16,5 +16,4 @@ TotalRevenue.args = {
 	icon: <CreditCard size={24} />,
 	title: 'total revenues',
 	value: 2129430,
-	bgColor: 'CYAN[0]',
 };
