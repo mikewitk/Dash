@@ -3,29 +3,31 @@ import {
 	StyledCardTitle,
 	StyledTitle,
 	StyledValue,
+	StyledCard,
 } from './SummaryCard.styles';
-import Card from '@mui/material/Card';
 import { currencyFormat } from '../../utils';
 
 interface SummaryCardProps {
 	icon: React.ReactElement;
 	title: string;
 	value: number;
+	backgroundColor: string;
 }
 
 export const DashboardSummaryCard = ({
 	icon,
 	title,
 	value,
+	backgroundColor,
 }: SummaryCardProps): JSX.Element => {
 	return (
-		<Card>
+		<StyledCard bg={backgroundColor}>
 			<StyledCardTitle>
 				<StyledTitle>{title}</StyledTitle>
 				{icon}
 			</StyledCardTitle>
 			<StyledValue>{currencyFormat(value)}</StyledValue>
-		</Card>
+		</StyledCard>
 	);
 };
 
