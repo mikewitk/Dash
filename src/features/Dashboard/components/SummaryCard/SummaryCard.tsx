@@ -5,13 +5,14 @@ import {
 	StyledValue,
 	StyledCard,
 } from './SummaryCard.styles';
-import { currencyFormat } from '../../utils';
+import { currencyFormat, numberFormat } from '../../utils';
 
 interface SummaryCardProps {
 	icon: React.ReactElement;
 	title: string;
 	value: number;
 	backgroundColor: string;
+	isCurrency: boolean;
 }
 
 export const DashboardSummaryCard = ({
@@ -19,6 +20,7 @@ export const DashboardSummaryCard = ({
 	title,
 	value,
 	backgroundColor,
+	isCurrency,
 }: SummaryCardProps): JSX.Element => {
 	return (
 		<StyledCard bg={backgroundColor}>
@@ -26,7 +28,9 @@ export const DashboardSummaryCard = ({
 				<StyledTitle>{title}</StyledTitle>
 				{icon}
 			</StyledCardTitle>
-			<StyledValue>{currencyFormat(value)}</StyledValue>
+			<StyledValue>
+				{isCurrency ? currencyFormat(value) : numberFormat(value)}
+			</StyledValue>
 		</StyledCard>
 	);
 };
