@@ -23,7 +23,7 @@ export const DashboardSummaryCard = ({
 	isCurrency,
 }: SummaryCardProps): JSX.Element => {
 	return (
-		<StyledCard bg={backgroundColor}>
+		<StyledCard style={{ backgroundColor: backgroundColor }}>
 			<StyledCardTitle>
 				<StyledTitle>{title}</StyledTitle>
 				{icon}

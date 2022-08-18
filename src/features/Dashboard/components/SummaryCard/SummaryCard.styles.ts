@@ -32,5 +32,4 @@ export const StyledCard = styled(Card)`
 	border-radius: 16px !important;
 	display: flex;
 	flex-direction: column;
-	background-color: ${props => props.bg} !important;
 `;
