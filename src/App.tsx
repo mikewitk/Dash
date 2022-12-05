@@ -1,10 +1,55 @@
 import GlobalThemeProvider from './lib/theme/GlobalThemeProvider';
 import Dashboard from './features/Dashboard';
+import SignUp from './features/LogIn';
+import { Routes, Route, Link } from 'react-router-dom';
+import { useState } from 'react';
 
 function App(): JSX.Element {
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+	function createAccount(userInfo: Record<string, string>) {
+		console.log('userInfo', userInfo);
+		setIsLoggedIn(true);
+	}
+
+	function logOut() {
+		setIsLoggedIn(false);
+	}
+
 	return (
 		<GlobalThemeProvider>
-			<Dashboard />
+			<div className="App">
+				<ul className="App-header">
+					<li>
+						<Link to="/">Home</Link>
+					</li>
+					<li>
+						<Link to="/about">About Us</Link>
+					</li>
+					<li>
+						<Link to="/contact">Contact Us</Link>
+					</li>
+					{isLoggedIn ? (
+						<li>
+							<Link to="/" onClick={logOut}>
+								Sign Out
+							</Link>
+						</li>
+					) : null}
+				</ul>
+				<Routes>
+					<Route
+						path="/"
+						element={
+							isLoggedIn ? (
+								<Dashboard />
+							) : (
+								<SignUp createAccount={createAccount} />
+							)
+						}
+					/>
+				</Routes>
+			</div>
 		</GlobalThemeProvider>
 	);
 }
