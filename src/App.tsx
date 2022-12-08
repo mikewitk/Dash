@@ -1,10 +1,10 @@
-import GlobalThemeProvider from './lib/theme/GlobalThemeProvider';
+import { useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import Dashboard from './features/Dashboard';
 import SignUp from './features/LogIn';
-import { Routes, Route, Link } from 'react-router-dom';
-import { useState } from 'react';
-import { UserAccountCreationProps } from './features/LogIn/types';
 import { useAccountCreation } from './features/LogIn/hooks/useAccountCreation';
+import { UserAccountCreationProps } from './features/LogIn/types';
+import GlobalThemeProvider from './lib/theme/GlobalThemeProvider';
 
 function App(): JSX.Element {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -23,31 +23,13 @@ function App(): JSX.Element {
 
 	return (
 		<GlobalThemeProvider>
-			<div className="App">
-				<ul className="App-header">
-					<li>
-						<Link to="/">Home</Link>
-					</li>
-					<li>
-						<Link to="/about">About Us</Link>
-					</li>
-					<li>
-						<Link to="/contact">Contact Us</Link>
-					</li>
-					{isLoggedIn ? (
-						<li>
-							<Link to="/" onClick={logOut}>
-								Sign Out
-							</Link>
-						</li>
-					) : null}
-				</ul>
+			<div>
 				<Routes>
 					<Route
 						path="/"
 						element={
 							isLoggedIn ? (
-								<Dashboard />
+								<Dashboard isLoggedIn={isLoggedIn} logOut={logOut} />
 							) : (
 								<SignUp createAccount={createAccount} />
 							)
