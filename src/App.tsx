@@ -3,13 +3,18 @@ import Dashboard from './features/Dashboard';
 import SignUp from './features/LogIn';
 import { Routes, Route, Link } from 'react-router-dom';
 import { useState } from 'react';
+import { UserAccountCreationProps } from './features/LogIn/types';
+import { useAccountCreation } from './features/LogIn/hooks/useAccountCreation';
 
 function App(): JSX.Element {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const { mutate, isError } = useAccountCreation();
 
-	function createAccount(userInfo: Record<string, string>) {
-		console.log('userInfo', userInfo);
-		setIsLoggedIn(true);
+	function createAccount(userInfo: UserAccountCreationProps) {
+		mutate(userInfo);
+		if (!isError) {
+			setIsLoggedIn(true);
+		}
 	}
 
 	function logOut() {

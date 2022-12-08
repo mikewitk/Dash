@@ -1,11 +1,10 @@
 import axios from 'axios';
-import { baseUrl } from '../config/variables';
+import { baseURL } from '../config/variables';
 
 const request = axios.create({
-	baseURL: baseUrl,
+	baseURL,
 	headers: {
-		'Content-type': 'application.json',
-		'X-API-Key': `${process.env.REACT_APP_MOCKAROO_API_KEY}`,
+		'Content-type': 'application/json',
 	},
 });
 
